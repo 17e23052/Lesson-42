@@ -1,16 +1,18 @@
-word = "sandwich"
-guess = ""
-not_done = word != guess #not done when the guess does not equal the word
-guesses = 0
+from random import choice
+from time import sleep
 
-while not_done and guesses < 5: #if the word is not guessed and less than 5 guesses
-  guess = input("Guess the word: ")
-  if guess == word:
-    guesses += 1
-    correct = "CORRECT!"
-    not_done = False #if guessed correctly, the loop finishes
-  else:
-    guesses += 1
-    correct = "INCORRECT!"
+simon_says = []
+adding_instructions = True
 
-print("You were", correct, "Guesses:", guesses)
+while adding_instructions:
+    instruction = input("Enter a Simon says instruction: ")
+    simon_says.append(instruction)
+    answer = input("Would you like to add another? Y/N ").upper()
+    if answer == "N":
+        adding_instructions = False
+
+intros =  ["Simon says...", ""]
+
+for x in range(len(simon_says)):
+    print(choice(intros), simon_says[x])
+    sleep(3)
